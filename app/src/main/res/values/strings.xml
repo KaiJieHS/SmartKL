@@ -23,4 +23,11 @@
     <string name="title_activity_transport_info">TransportInfo</string>
     <string name="title_activity_health_care">HealthCareActivity</string>
     <string name="title_activity_organization">OrganizationActivity</string>
+
+    <string name="welcome_phase">Hi , </string>
+    <string name="show_phone_no">Phone No :</string>
+    <string name="display_email">Email :</string>
+    <string name="button_change_profile_pic">Change Profile Picture</string>
+    <string name="button_logout">LogOut</string>
+    <string name="button_update_profile">Update Profile</string>
 </resources>
