@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="colorBank">#fffec1</color>
+    <color name="colorTransport">#eaefd8</color>
+    <color name="colorEvents">#e5ddec</color>
+    <color name="colorHealthCare">#d9ecf2</color>
+    <color name="colorEducation">#fdb9b6</color>
+    <color name="colorOrganization">#d3f0d2</color>
+</resources>

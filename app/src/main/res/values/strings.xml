@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">SmartKL</string>
+    <string name="title_home">Home</string>
+    <string name="title_feedback">Feedback</string>
+    <string name="title_me">Me</string>
+
+    <string name="bank">Bank</string>
+    <string name="transport">Transport</string>
+    <string name="events">Events</string>
+    <string name="health_care">Health Care</string>
+    <string name="education">Education</string>
+    <string name="organization">Organization</string>
+
+    <string name="title_activity_transport">TransportActivity</string>
+
+    <string name="problem">Problems</string>
+    <string name="suggestion">Suggestion</string>
+    <string name="description">Description</string>
+    <string name="subject">Subject</string>
+</resources>
