@@ -17,4 +17,6 @@
     <string name="suggestion">Suggestion</string>
     <string name="description">Description</string>
     <string name="subject">Subject</string>
+    <string name="submit">Submit</string>
+    <string name="feedbackForm">Feedback Form</string>
 </resources>
