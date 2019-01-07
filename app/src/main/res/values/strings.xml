@@ -30,6 +30,12 @@
     <string name="button_change_profile_pic">Change Profile Picture</string>
     <string name="button_logout">LogOut</string>
     <string name="button_update_profile">Update Profile</string>
+    <string name="FeedbackID">Feedback ID</string>
+    <string name="Type">Type</string>
+    <string name="subject">Subject</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="norecord">No record</string>
     <string name="title_activity_citizen_login">Sign in</string>
     <!-- Strings related to login -->
     <string name="prompt_username">UserName</string>
