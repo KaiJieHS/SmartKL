@@ -41,10 +41,10 @@ public class FeedbackActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_feedback);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        listViewFeedback = (ListView) findViewById(R.id.listViewFeedback);
+        listViewFeedback = findViewById(R.id.listViewFeedback);
         pDialog = new ProgressDialog(this);
         fbList = new ArrayList<>();
 
@@ -52,7 +52,7 @@ public class FeedbackActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No network", Toast.LENGTH_LONG).show();
         }
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -79,8 +79,8 @@ public class FeedbackActivity extends AppCompatActivity {
         // Associate searchable configuration with the SearchView
 
 
-            return false;
-        }
+        return false;
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

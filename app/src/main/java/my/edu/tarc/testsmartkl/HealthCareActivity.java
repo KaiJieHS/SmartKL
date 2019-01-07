@@ -36,6 +36,8 @@ public class HealthCareActivity extends AppCompatActivity {
     private static String SEARCH_URL = "https://circumgyratory-gove.000webhostapp.com/search_healthcare.php";
     RequestQueue queue;
 
+    ListView listView;
+    String items[] = new String [] {"","LRT","Bus"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
