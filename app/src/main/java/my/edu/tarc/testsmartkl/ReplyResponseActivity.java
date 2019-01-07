@@ -1,8 +1,8 @@
 package my.edu.tarc.testsmartkl;
 
 import android.content.Context;
-import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -20,59 +20,43 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+public class ReplyResponseActivity extends AppCompatActivity {
 
-public class  AddFeedbackActivity extends AppCompatActivity {
-    EditText editTextSubject, editTextDesc;
-    RadioGroup radioGroupType;
-    RadioButton buttonSug, buttonPro;
-
+    private EditText editTextRepDesc;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_feedback);
+        setContentView(R.layout.activity_reply_response);
 
-        editTextSubject = findViewById(R.id.editTextSubject);
-        editTextDesc =  findViewById(R.id.editTextrepDesc);
-        buttonSug = findViewById(R.id.radioButton3);
-        buttonPro = findViewById(R.id.radioButton4);
-        radioGroupType = findViewById(R.id.radioGroupType);
-
-
+        editTextRepDesc=findViewById(R.id.editTextrepDesc);
     }
 
 
     public void saveRecord(View v) {
-        Feedback feedback = new Feedback();
-        Date currentTime = (Date) Calendar.getInstance().getTime();
-        String type="";
-        if(radioGroupType.getCheckedRadioButtonId() == R.id.radioButton3){
-            type="Suggestion";
-        }else if(radioGroupType.getCheckedRadioButtonId() == R.id.radioButton4){
-            type="Problems";
-        }
+        FeedbackResponses feedbackres = new FeedbackResponses();
+        Date currentTime = Calendar.getInstance().getTime();
 
-        feedback.setFeedbackType(type);
-        feedback.setSubject(editTextSubject.getText().toString());
-        feedback.setDescription(editTextDesc.getText().toString());
-        feedback.setDate(currentTime.toString());
-        feedback.setCitizenID(1);
 
+        feedbackres.setFeedbackID(1);
+        feedbackres.setOfficerID(0);
+        feedbackres.setResponseDesc(editTextRepDesc.toString());
+        feedbackres.setResponseDate(currentTime.toString());
 
         try {
             //TODO: Please update the URL to point to your own server
-            addFeedback(this, "https://circumgyratory-gove.000webhostapp.com/insert_feedback.php", feedback);
+            addResponse(this, "https://circumgyratory-gove.000webhostapp.com/insert_response.php", feedbackres);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
-    public void addFeedback(Context context, String url, final Feedback feedback) {
+    public void addResponse(Context context, String url, final FeedbackResponses feedbackres) {
         //mPostCommentResponse.requestStarted();
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -109,11 +93,10 @@ public class  AddFeedbackActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
-                    params.put("FeedbackTitle", feedback.getSubject());
-                    params.put("FeedbackDesc", feedback.getDescription());
-                    params.put("FeedbackType", feedback.getFeedbackType());
-                    params.put("FeedbackDate", feedback.getDate());
-                    params.put("CitizenID", String.valueOf(feedback.getCitizenID()));
+                    params.put("FeedbackID", String.valueOf(feedbackres.getFeedbackID()));
+                    params.put("ResponseDesc", feedbackres.getResponseDesc());
+                    params.put("OfficerID", String.valueOf(feedbackres.getOfficerID()));
+                    params.put("ResponseDate", feedbackres.getResponseDate());
                     return params;
                 }
 
@@ -129,6 +112,4 @@ public class  AddFeedbackActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
 }

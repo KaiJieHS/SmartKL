@@ -16,7 +16,7 @@
     <string name="problem">Problems</string>
     <string name="suggestion">Suggestion</string>
     <string name="description">Description</string>
-
+    <string name="subject">Subject</string>
     <string name="submit">Submit</string>
     <string name="feedbackForm">Feedback Form</string>
     <string name="action_settings">Settings</string>
@@ -32,7 +32,6 @@
     <string name="button_update_profile">Update Profile</string>
     <string name="FeedbackID">Feedback ID</string>
     <string name="Type">Type</string>
-    <string name="subject">Subject</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="norecord">No record</string>
@@ -40,7 +39,7 @@
     <!-- Strings related to login -->
     <string name="prompt_username">UserName</string>
     <string name="prompt_password">Password</string>
-
+    <string name="action_sign_in">Sign In</string>
     <string name="register_forget_password">Register | Forget Password</string>
     <string name="already_register">Already Register? Click here to Login</string>
 
@@ -50,7 +49,7 @@
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="button_register">Register</string>
-    <string name="action_sign_in">Sign in or register</string>
+    <string name="reply">Reply</string>
     <string name="action_sign_in_short">Sign in</string>
     <string name="error_invalid_email">This email address is invalid</string>
     <string name="error_invalid_password">This password is too short</string>
