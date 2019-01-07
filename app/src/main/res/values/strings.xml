@@ -66,4 +66,7 @@
     <string name="orgName">No record</string>
     <string name="orgAddress">No record</string>
     <string name="orgContact">No record</string>
+    <string name="hcName">Hospital Name</string>
+    <string name="hcAddress">Address</string>
+    <string name="hcContact">Contact Number</string>
 </resources>

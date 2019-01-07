@@ -2,14 +2,17 @@ package my.edu.tarc.testsmartkl;
 
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -60,6 +63,22 @@ public class OrganizationActivity extends AppCompatActivity {
             }
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        downloadOrganization(getApplicationContext(), GET_URL);
+
+        listViewOrganization.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                String uri = ogList.get(position).getOrgBranchLocation();
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW);
+                mapIntent.setData(Uri.parse("geo:0,0?q="+uri));
+                mapIntent.setPackage("com.google.android.apps.maps");
+                if (mapIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(mapIntent);
+                }
+            }
+        });
     }
 
     private boolean isConnected() {
@@ -70,7 +89,7 @@ public class OrganizationActivity extends AppCompatActivity {
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
     }
 
-    private void downloadHealthCare(Context context, String url) {
+    private void downloadOrganization(Context context, String url) {
         // Instantiate the RequestQueue
         queue = Volley.newRequestQueue(context);
 
@@ -94,7 +113,7 @@ public class OrganizationActivity extends AppCompatActivity {
                                 Organization organization = new Organization(organizationID,orgName,orgBranchLocation,orgContactNum);
                                 ogList.add(organization);
                             }
-                            loadHealthCare();
+                            loadOrganization();
                             if (pDialog.isShowing())
                                 pDialog.dismiss();
                         } catch (Exception e) {
@@ -118,7 +137,7 @@ public class OrganizationActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    private void loadHealthCare() {
+    private void loadOrganization() {
         final OrganizationAdapter adapter = new OrganizationAdapter(this, R.layout.activity_organization, ogList);
         listViewOrganization.setAdapter(adapter);
         if(ogList != null){
