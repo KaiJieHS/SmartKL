@@ -36,10 +36,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddFeedbackActivity"></activity>
+        <activity android:name=".AddFeedbackActivity" android:parentActivityName=".FeedbackActivity"></activity>
         <activity
             android:name=".CitizenLoginActivity"
             android:label="@string/title_activity_citizen_login"></activity>
+
+	<activity
         android:name=".TransportActivity"
         android:label="@string/title_activity_transport"
         android:parentActivityName=".MainActivity"
@@ -47,7 +49,7 @@
         <meta-data
             android:name="android.support.PARENT_ACTIVITY"
             android:value="my.edu.tarc.testsmartkl.MainActivity" />
-    </activity>
+    	</activity>
         <activity android:name=".TransportLine" />
 
         <activity

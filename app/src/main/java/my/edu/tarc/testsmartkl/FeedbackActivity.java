@@ -168,4 +168,10 @@ public class FeedbackActivity extends AppCompatActivity {
             queue.cancelAll(TAG);
         }
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        downloadCourse(getApplicationContext(), GET_URL);
+    }
 }

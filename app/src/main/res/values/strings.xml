@@ -32,7 +32,6 @@
     <string name="button_update_profile">Update Profile</string>
     <string name="FeedbackID">Feedback ID</string>
     <string name="Type">Type</string>
-    <string name="subject">Subject</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="norecord">No record</string>
