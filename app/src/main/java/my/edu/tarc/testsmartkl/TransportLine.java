@@ -12,7 +12,7 @@ public class TransportLine extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_transport_line);
 
-        textViewMessage = (TextView)findViewById(R.id.textViewTest1);
+        textViewMessage = findViewById(R.id.textViewTest1);
 
         String stringMsg = getIntent().getStringExtra("TransportType");
         textViewMessage.setText(stringMsg);

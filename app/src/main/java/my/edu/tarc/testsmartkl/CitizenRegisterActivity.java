@@ -11,14 +11,13 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class RegisterActivity extends AppCompatActivity {
+public class CitizenRegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_citizen_register);
 
         TextView textView = findViewById(R.id.textView);
         String text = "Already Register? Click here to Login";
@@ -26,7 +25,7 @@ public class RegisterActivity extends AppCompatActivity {
         ClickableSpan clickableSpan = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                Intent intent = new Intent(RegisterActivity.this,CitizenLoginActivity.class);
+                Intent intent = new Intent(CitizenRegisterActivity.this,CitizenLoginActivity.class);
                 startActivity(intent);
             }
 

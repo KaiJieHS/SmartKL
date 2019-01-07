@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">SmartKL</string>
     <string name="title_home">Home</string>
     <string name="title_feedback">Feedback</string>
@@ -32,7 +32,6 @@
     <string name="button_update_profile">Update Profile</string>
     <string name="FeedbackID">Feedback ID</string>
     <string name="Type">Type</string>
-    <string name="subject">Subject</string>
     <string name="date">Date</string>
     <string name="time">Time</string>
     <string name="norecord">No record</string>
@@ -46,7 +45,7 @@
 
     <string name="username">Username</string>
     <string name="password">Password</string>
-    <string name="Name">Name</string>
+    <string name="name">Name</string>
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="button_register">Register</string>

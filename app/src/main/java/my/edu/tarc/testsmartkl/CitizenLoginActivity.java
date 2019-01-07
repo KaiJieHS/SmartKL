@@ -74,15 +74,15 @@ public class CitizenLoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_citizen_login);
 
         // Set up the login form.
-        mUserName = (EditText) findViewById(R.id.txtUserName);
-        mPasswordView = (EditText) findViewById(R.id.txtPassword);
+        mUserName = findViewById(R.id.txtUserName);
+        mPasswordView = findViewById(R.id.txtPassword);
         TextView textView = findViewById(R.id.textView);
         String text = "Register | Forget Password";
         SpannableString ss = new SpannableString(text);
         ClickableSpan clickableSpan1 = new ClickableSpan() {
             @Override
             public void onClick(View widget) {
-                Intent intent = new Intent(CitizenLoginActivity.this,RegisterActivity.class);
+               Intent intent = new Intent(CitizenLoginActivity.this,CitizenRegisterActivity.class);
                 startActivity(intent);
 
             }
@@ -113,7 +113,7 @@ public class CitizenLoginActivity extends AppCompatActivity {
         textView.setText(ss);
         textView.setMovementMethod(LinkMovementMethod.getInstance());
 
-        Button btnLogin = (Button) findViewById(R.id.btnLogin);
+        Button btnLogin = findViewById(R.id.btnLogin);
         btnLogin.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {

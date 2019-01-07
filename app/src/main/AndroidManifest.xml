@@ -25,7 +25,8 @@
         </activity>
         <activity
             android:name=".CitizenLoginActivity"
-            android:label="@string/title_activity_citizen_login"></activity>
+            android:label="@string/title_activity_citizen_login" />
+        <activity android:name=".CitizenRegisterActivity"></activity>
     </application>
 
 </manifest>
