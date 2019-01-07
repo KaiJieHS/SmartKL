@@ -16,7 +16,6 @@
     <string name="problem">Problems</string>
     <string name="suggestion">Suggestion</string>
     <string name="description">Description</string>
-    <string name="subject">Subject</string>
     <string name="submit">Submit</string>
     <string name="feedbackForm">Feedback Form</string>
     <string name="action_settings">Settings</string>
@@ -49,4 +48,9 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>
+    <string name="transportLine" />
+    <string name="title_activity_transport_line">TransportLineActivity</string>
+    <string name="hcBranchName">No record</string>
+    <string name="hcBranchLocation">No record</string>
+    <string name="hcContactNumber">No record</string>
 </resources>
