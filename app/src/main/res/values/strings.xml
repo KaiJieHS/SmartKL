@@ -16,7 +16,6 @@
     <string name="problem">Problems</string>
     <string name="suggestion">Suggestion</string>
     <string name="description">Description</string>
-    <string name="subject">Subject</string>
     <string name="submit">Submit</string>
     <string name="feedbackForm">Feedback Form</string>
     <string name="action_settings">Settings</string>
@@ -30,4 +29,10 @@
     <string name="button_change_profile_pic">Change Profile Picture</string>
     <string name="button_logout">LogOut</string>
     <string name="button_update_profile">Update Profile</string>
+    <string name="FeedbackID">Feedback ID</string>
+    <string name="Type">Type</string>
+    <string name="subject">Subject</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="norecord">No record</string>
 </resources>

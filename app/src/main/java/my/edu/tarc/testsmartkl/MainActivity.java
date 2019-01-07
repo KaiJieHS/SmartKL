@@ -26,7 +26,8 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
                     return true;
                 case R.id.navigation_feedback:
-                    transaction.replace(R.id.fragment_container,new FeedbackFragment()).commit();
+                    Intent intent = new Intent(MainActivity.this,FeedbackActivity.class);
+                    startActivity(intent);
                     return true;
                 case R.id.navigation_me:
                     transaction.replace(R.id.fragment_container,new MeFragment()).commit();
