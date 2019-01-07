@@ -27,25 +27,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HealthCareActivity extends AppCompatActivity {
+
     public static final String TAG = "my.edu.tarc.testsmartkl";
     ListView listViewHealthCare;
     List<HealthCare> hcList;
-    TextView textViewMessage;
     private ProgressDialog pDialog;
     //TODO: Please update the URL to point to your own server
-    private static String SEARCH_URL = "https://circumgyratory-gove.000webhostapp.com/search_healthcare.php";
+    private static String GET_URL = "https://circumgyratory-gove.000webhostapp.com/search_healthcare.php";
+    private static String SEARCH_URL;
     RequestQueue queue;
 
-    ListView listView;
-    String items[] = new String [] {"","LRT","Bus"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_care);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-        String HcID;
 
         listViewHealthCare = (ListView) findViewById(R.id.listViewHealthCare);
         pDialog = new ProgressDialog(this);
@@ -65,7 +62,7 @@ public class HealthCareActivity extends AppCompatActivity {
         });
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
+        downloadHealthCare(getApplicationContext(), GET_URL);
     }
 
     private boolean isConnected() {
@@ -74,9 +71,10 @@ public class HealthCareActivity extends AppCompatActivity {
 
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         return activeNetwork != null && activeNetwork.isConnectedOrConnecting();
+
     }
 
-    private void searchHealthCare(Context context, String HcID) {
+    private void searchHealthCare(Context context, int HcID) {
         queue = Volley.newRequestQueue(context);
         String url = SEARCH_URL + "?HcID=" + HcID;
 
@@ -93,14 +91,61 @@ public class HealthCareActivity extends AppCompatActivity {
                             hcList.clear();
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject healthCareResponse = (JSONObject) response.get(i);
-                                String HcID = healthCareResponse.getString("HcID");
-                                String HcBranchName = healthCareResponse.getString("HcBranchName");
-                                String HcBranchLocation = healthCareResponse.getString("HcBranchLocation");
-                                String HcContactNumber = healthCareResponse.getString("HcContactNumber");
-                                HealthCare healthcare = new HealthCare(HcID,HcBranchName,HcBranchLocation,HcContactNumber);
+                                int hcID = Integer.parseInt(healthCareResponse.getString("HcID"));
+                                String hcBranchName = healthCareResponse.getString("HcBranchName");
+                                String hcBranchLocation = healthCareResponse.getString("HcBranchLocation");
+                                String hcContactNumber = healthCareResponse.getString("HcContactNum");
+                                HealthCare healthcare = new HealthCare(hcID,hcBranchName,hcBranchLocation,hcContactNumber);
                                 hcList.add(healthcare);
                             }
-                            loadTransport();
+                            loadHealthCare();
+                            if (pDialog.isShowing())
+                                pDialog.dismiss();
+                        } catch (Exception e) {
+                            Toast.makeText(getApplicationContext(), "Error:" + e.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError volleyError) {
+                        Toast.makeText(getApplicationContext(), "Error" + volleyError.getMessage(), Toast.LENGTH_LONG).show();
+                        if (pDialog.isShowing())
+                            pDialog.dismiss();
+                    }
+                });
+
+        // Set the tag on the request.
+        jsonObjectRequest.setTag(TAG);
+
+        // Add the request to the RequestQueue.
+        queue.add(jsonObjectRequest);
+    }
+    private void downloadHealthCare(Context context, String url) {
+        // Instantiate the RequestQueue
+        queue = Volley.newRequestQueue(context);
+
+        if (!pDialog.isShowing())
+            pDialog.setMessage("Sync with server...");
+        pDialog.show();
+
+        JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
+                url,
+                new Response.Listener<JSONArray>() {
+                    @Override
+                    public void onResponse(JSONArray response) {
+                        try {
+                            hcList.clear();
+                            for (int i = 0; i < response.length(); i++) {
+                                JSONObject healthCareResponse = (JSONObject) response.get(i);
+                                int hcID = Integer.parseInt(healthCareResponse.getString("HcID"));
+                                String hcBranchName = healthCareResponse.getString("HcBranchName");
+                                String hcBranchLocation = healthCareResponse.getString("HcBranchLocation");
+                                String hcContactNumber = healthCareResponse.getString("HcContactNum");
+                                HealthCare healthcare = new HealthCare(hcID,hcBranchName,hcBranchLocation,hcContactNumber);
+                                hcList.add(healthcare);
+                            }
+                            loadHealthCare();
                             if (pDialog.isShowing())
                                 pDialog.dismiss();
                         } catch (Exception e) {
@@ -124,7 +169,7 @@ public class HealthCareActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    private void loadTransport() {
+    private void loadHealthCare() {
         final HealthCareAdapter adapter = new HealthCareAdapter(this, R.layout.activity_health_care, hcList);
         listViewHealthCare.setAdapter(adapter);
         if(hcList != null){

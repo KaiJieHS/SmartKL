@@ -47,9 +47,18 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
     public void Transport(View v){
         Intent intent = new Intent(this, TransportActivity.class);
+        startActivity(intent);
+    }
+
+    public void HealthCare(View v){
+        Intent intent = new Intent(this, HealthCareActivity.class);
+        startActivity(intent);
+    }
+
+    public void Organization(View v){
+        Intent intent = new Intent(this, OrganizationActivity.class);
         startActivity(intent);
     }
 

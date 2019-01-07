@@ -1,7 +1,7 @@
 package my.edu.tarc.testsmartkl;
 
 class HealthCare {
-    private String HcID;
+    private int HcID;
     private String HcBranchName;
     private String HcBranchLocation;
     private String HcContactNumber;
@@ -9,18 +9,18 @@ class HealthCare {
     public HealthCare() {
     }
 
-    public HealthCare(String hcID, String hcBranchName, String hcBranchLocation, String hcContactNumber) {
+    public HealthCare(int hcID, String hcBranchName, String hcBranchLocation, String hcContactNumber) {
         HcID = hcID;
         HcBranchName = hcBranchName;
         HcBranchLocation = hcBranchLocation;
         HcContactNumber = hcContactNumber;
     }
 
-    public String getHcID() {
+    public int getHcID() {
         return HcID;
     }
 
-    public void setHcID(String hcID) {
+    public void setHcID(int hcID) {
         HcID = hcID;
     }
 
