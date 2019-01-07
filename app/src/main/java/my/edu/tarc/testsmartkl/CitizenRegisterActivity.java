@@ -19,7 +19,7 @@ public class CitizenRegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citizen_register);
 
-        TextView textView = findViewById(R.id.textView);
+        TextView textView = findViewById(R.id.textViewResponseDesc);
         String text = "Already Register? Click here to Login";
         SpannableString ss = new SpannableString(text);
         ClickableSpan clickableSpan = new ClickableSpan() {

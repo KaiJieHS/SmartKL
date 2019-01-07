@@ -27,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 case R.id.navigation_feedback:
                     Intent intent = new Intent(MainActivity.this,FeedbackActivity.class);
+                    //intent.putExtra("CurrentCitizenID", "1");
                     startActivity(intent);
                     return true;
                 case R.id.navigation_me:

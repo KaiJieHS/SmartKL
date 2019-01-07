@@ -36,22 +36,22 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddFeedbackActivity" android:parentActivityName=".FeedbackActivity"></activity>
+        <activity
+            android:name=".AddFeedbackActivity"
+            android:parentActivityName=".FeedbackActivity" />
         <activity
             android:name=".CitizenLoginActivity"
-            android:label="@string/title_activity_citizen_login"></activity>
-
-	<activity
-        android:name=".TransportActivity"
-        android:label="@string/title_activity_transport"
-        android:parentActivityName=".MainActivity"
-        android:theme="@style/AppTheme.NoActionBar">
-        <meta-data
-            android:name="android.support.PARENT_ACTIVITY"
-            android:value="my.edu.tarc.testsmartkl.MainActivity" />
-    	</activity>
+            android:label="@string/title_activity_citizen_login" />
+        <activity
+            android:name=".TransportActivity"
+            android:label="@string/title_activity_transport"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="my.edu.tarc.testsmartkl.MainActivity" />
+        </activity>
         <activity android:name=".TransportLine" />
-
         <activity
             android:name=".HealthCareActivity"
             android:label="@string/title_activity_health_care"
@@ -70,6 +70,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="my.edu.tarc.testsmartkl.MainActivity" />
         </activity>
+        <activity android:name=".ViewResponseRecordActivity" />
+        <activity android:name=".ReplyResponseActivity"></activity>
     </application>
 
 </manifest>

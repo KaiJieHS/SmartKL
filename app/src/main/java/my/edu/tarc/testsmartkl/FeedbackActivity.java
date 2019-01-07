@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -33,8 +34,9 @@ public class FeedbackActivity extends AppCompatActivity {
     ListView listViewFeedback;
     List<Feedback> fbList;
     private ProgressDialog pDialog;
+
     //TODO: Please update the URL to point to your own server
-    private static String GET_URL = "https://circumgyratory-gove.000webhostapp.com/select_feedback.php";
+    private static String SEARCH_URL = "https://circumgyratory-gove.000webhostapp.com/search_feedback.php";
     RequestQueue queue;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +54,7 @@ public class FeedbackActivity extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "No network", Toast.LENGTH_LONG).show();
         }
 
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +63,20 @@ public class FeedbackActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        downloadCourse(getApplicationContext(), GET_URL);
+
+        searchFeedback(getApplicationContext(), 1);
+
+        listViewFeedback.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                String fbID = String.valueOf(fbList.get(position).getFeedbackID());
+                Intent intent = new Intent(FeedbackActivity.this, ViewResponseRecordActivity.class);
+                intent.putExtra("currentFeedbackID", fbID);
+                startActivity(intent);
+
+            }
+        });
+
     }
     private boolean isConnected() {
         ConnectivityManager cm =
@@ -93,18 +109,18 @@ public class FeedbackActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         } else if (id == R.id.action_sycn) {
-            downloadCourse(getApplicationContext(), GET_URL);
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void downloadCourse(Context context, String url) {
-        // Instantiate the RequestQueue
+    private void searchFeedback(Context context, int id) {
         queue = Volley.newRequestQueue(context);
+        String url = SEARCH_URL + "?CitizenID=" + id;
 
         if (!pDialog.isShowing())
-            pDialog.setMessage("Syn with server...");
+            pDialog.setMessage("Searching...");
         pDialog.show();
 
         JsonArrayRequest jsonObjectRequest = new JsonArrayRequest(
@@ -116,6 +132,7 @@ public class FeedbackActivity extends AppCompatActivity {
                             fbList.clear();
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject feedbackResponse = (JSONObject) response.get(i);
+
                                 int fbid = feedbackResponse.getInt("FeedbackID");
                                 String type = feedbackResponse.getString("FeedbackType");
                                 String subj = feedbackResponse.getString("FeedbackTitle");
@@ -125,7 +142,7 @@ public class FeedbackActivity extends AppCompatActivity {
                                 Feedback feedback = new Feedback(fbid,type,subj,desc,date,citizenid);
                                 fbList.add(feedback);
                             }
-                            loadCourse();
+                            loadFeedback();
                             if (pDialog.isShowing())
                                 pDialog.dismiss();
                         } catch (Exception e) {
@@ -149,8 +166,8 @@ public class FeedbackActivity extends AppCompatActivity {
         queue.add(jsonObjectRequest);
     }
 
-    private void loadCourse() {
-        final FeedbackAdapter adapter = new FeedbackAdapter(this, R.layout.content_feedback, fbList);
+    private void loadFeedback() {
+        final FeedbackAdapter adapter = new FeedbackAdapter(this, R.layout.activity_feedback, fbList);
         listViewFeedback.setAdapter(adapter);
         if(fbList != null){
             int size = fbList.size();
@@ -160,6 +177,8 @@ public class FeedbackActivity extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "No record found.", Toast.LENGTH_SHORT).show();
         }
     }
+
+
 
     @Override
     protected void onPause() {
@@ -172,6 +191,7 @@ public class FeedbackActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        downloadCourse(getApplicationContext(), GET_URL);
+        //int currentCitizenid= Integer.parseInt(getIntent().getStringExtra("currentCitizenID"));
+        searchFeedback(getApplicationContext(), 1);
     }
 }
