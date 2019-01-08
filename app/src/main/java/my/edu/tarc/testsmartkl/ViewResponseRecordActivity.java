@@ -30,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -67,13 +68,19 @@ public class ViewResponseRecordActivity extends AppCompatActivity {
 
     public void saveRecord(View v) {
         FeedbackResponses feedbackres = new FeedbackResponses();
+        //Calendar calender = Calendar.getInstance();
+        //String currentDate = DateFormat.getDateInstance(DateFormat.FULL).format(((Calendar) calender).getTime());
         Date currentTime = Calendar.getInstance().getTime();
 
+        String searchusertype= getIntent().getStringExtra("currentUserType");
+        if(searchusertype.equals("admin")){
 
+        }
         feedbackres.setFeedbackID(3);
         feedbackres.setOfficerID(1);
-        feedbackres.setResponseDesc(editTextRepDesc.toString());
+        feedbackres.setResponseDesc(editTextRepDesc.getText().toString());
         feedbackres.setResponseDate(currentTime.toString());
+        //feedbackres.setResponseDate(currentDate);
 
         try {
             //TODO: Please update the URL to point to your own server
@@ -226,4 +233,3 @@ public class ViewResponseRecordActivity extends AppCompatActivity {
     }
 
 }
-

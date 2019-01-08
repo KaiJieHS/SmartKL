@@ -18,20 +18,23 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
+                    Intent intent2 = new Intent(MainActivity.this,MainActivity.class);
+                    //intent.putExtra("CurrentCitizenID", "1");
+                    startActivity(intent2);
                     return true;
                 case R.id.navigation_feedback:
                     Intent intent = new Intent(MainActivity.this,FeedbackActivity.class);
-                    //intent.putExtra("CurrentCitizenID", "1");
+                    intent.putExtra("userID", "1");
+                    intent.putExtra("userType", "Admin");
                     startActivity(intent);
                     return true;
                 case R.id.navigation_me:
-                    transaction.replace(R.id.fragment_container,new MeFragment()).commit();
+                    Intent intent1 = new Intent(MainActivity.this,FeedbackActivity.class);
+                    //intent.putExtra("CurrentCitizenID", "1");
+                    startActivity(intent1);
                     return true;
             }
             return false;
@@ -42,12 +45,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.fragment_container,new HomeFragment()).commit();
         BottomNavigationView navigation = findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
+
     public void Transport(View v){
         Intent intent = new Intent(this, TransportActivity.class);
         startActivity(intent);
