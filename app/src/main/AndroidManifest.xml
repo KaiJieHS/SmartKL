@@ -71,7 +71,8 @@
         </activity>
         <activity android:name=".ViewResponseRecordActivity" />
         <activity android:name=".ReplyResponseActivity" />
-        <activity android:name=".AddHealthCareActivity"></activity>
+        <activity android:name=".AddHealthCareActivity" />
+        <activity android:name=".AddTransportLineActivity"></activity>
     </application>
 
 </manifest>

@@ -69,4 +69,6 @@
     <string name="hcName">Hospital Name</string>
     <string name="hcAddress">Address</string>
     <string name="hcContact">Contact Number</string>
+    <string name="line">Transport Line</string>
+    <string name="scheduleURL">Schedule URL</string>
 </resources>

@@ -6,8 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -21,44 +20,47 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-public class AddHealthCareActivity extends AppCompatActivity {
+public class AddTransportLineActivity extends AppCompatActivity {
 
-    EditText editTextName, editTextAddress, editTextContact;
+    String items[] = new String [] {"KTM","LRT","Bus"};
+    EditText editTextTransportLine, editTextScheduleURL;
+    Spinner spinnerType;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_health_care);
+        setContentView(R.layout.activity_add_transport_line);
 
-        editTextName = findViewById(R.id.editTextName);
-        editTextAddress =  findViewById(R.id.editTextAddress);
-        editTextContact = findViewById(R.id.editTextContact);
+        spinnerType = findViewById(R.id.spinnerTransportType);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,android.R.id.text1,items);
+        spinnerType.setAdapter(adapter);
 
+        editTextTransportLine = findViewById(R.id.editTextTransportLine);
+        editTextScheduleURL =  findViewById(R.id.editTextScheduleURL);
     }
 
-    public void saveRecordHc(View v) {
-        HealthCare healthcare = new HealthCare();
+    public void saveRecordTl(View v) {
+        Transport transport = new Transport();
 
-        healthcare.setHcBranchName(editTextName.getText().toString());
-        healthcare.setHcBranchLocation(editTextAddress.getText().toString());
-        healthcare.setHcContactNumber(editTextContact.getText().toString());
+        transport.setTransportType(spinnerType.getSelectedItem().toString());
+        transport.setTransportLine(editTextTransportLine.getText().toString());
+        transport.setTransportSchedule(editTextScheduleURL.getText().toString());
 
 
         try {
             //TODO: Please update the URL to point to your own server
-            addHealthCare(this, "https://circumgyratory-gove.000webhostapp.com/insert_healthcare.php", healthcare);
+            addTransport(this, "https://circumgyratory-gove.000webhostapp.com/insert_transport.php", transport);
         } catch (Exception e) {
             e.printStackTrace();
             Toast.makeText(getApplicationContext(), "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
-    public void addHealthCare(Context context, String url, final HealthCare healthcare) {
+    public void addTransport(Context context, String url, final Transport transport) {
         //mPostCommentResponse.requestStarted();
         RequestQueue queue = Volley.newRequestQueue(context);
 
@@ -95,9 +97,9 @@ public class AddHealthCareActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String, String> params = new HashMap<>();
-                    params.put("HcBranchName", healthcare.getHcBranchName());
-                    params.put("HcBranchLocation", healthcare.getHcBranchLocation());
-                    params.put("HcContactNum", healthcare.getHcContactNumber());
+                    params.put("TransportType", transport.getTransportType());
+                    params.put("TransportLine", transport.getTransportLine());
+                    params.put("TransportSchedule", transport.getTransportSchedule());
                     return params;
                 }
 
@@ -113,5 +115,4 @@ public class AddHealthCareActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
 }

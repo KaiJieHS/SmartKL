@@ -6,18 +6,33 @@ public class Transport {
     private String transportLine;
     private String transportSchedule;
 
+    public Transport() {
+    }
+
     public Transport(int transportID, String transportLine) {
         this.transportID = transportID;
         this.transportLine = transportLine;
     }
 
-    public Transport(String hcID, String hcBranchName, String hcBranchLocation, String hcContactNumber) {
-    }
 
     public Transport(int transportID, String transportLine, String transportSchedule) {
         this.transportID = transportID;
         this.transportLine = transportLine;
         this.transportSchedule = transportSchedule;
+    }
+
+    public Transport(String transportType, String transportLine, String transportSchedule) {
+        this.transportType = transportType;
+        this.transportLine = transportLine;
+        this.transportSchedule = transportSchedule;
+    }
+
+    public String getTransportType() {
+        return transportType;
+    }
+
+    public void setTransportType(String transportType) {
+        this.transportType = transportType;
     }
 
     public String getTransportSchedule() {
