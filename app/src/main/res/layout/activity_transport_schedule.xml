@@ -20,10 +20,9 @@
         app:menu="@menu/navigation" />
 
     <TextView
-        android:id="@+id/textViewSchedule"
+        android:id="@+id/textViewURL"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        tools:layout_editor_absoluteX="117dp"
-        tools:layout_editor_absoluteY="106dp" />
+        android:layout_height="wrap_content" />
+
+
 </android.support.constraint.ConstraintLayout>

@@ -54,4 +54,14 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void HealthCare(View v){
+        Intent intent = new Intent(this, HealthCareActivity.class);
+        startActivity(intent);
+    }
+
+    public void Organization(View v){
+        Intent intent = new Intent(this, OrganizationActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -6,8 +6,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -34,9 +36,13 @@ public class TransportLine extends AppCompatActivity {
     List<Transport> tpList;
     TextView textViewMessage;
     private ProgressDialog pDialog;
+    private ProgressDialog pDialog1;
     //TODO: Please update the URL to point to your own server
     private static String SEARCH_URL = "https://circumgyratory-gove.000webhostapp.com/search_transportLine.php";
+    private static String SEARCH_URL1 = "https://circumgyratory-gove.000webhostapp.com/search_Schedule.php";
     RequestQueue queue;
+    RequestQueue queue1;
+    List<Schedule> tsList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +53,9 @@ public class TransportLine extends AppCompatActivity {
 
         listViewTransportLine = (ListView) findViewById(R.id.listViewTransportLine);
         pDialog = new ProgressDialog(this);
+        pDialog1 = new ProgressDialog(this);
         tpList = new ArrayList<>();
+        tsList = new ArrayList<>();
 
         if (!isConnected()) {
             Toast.makeText(getApplicationContext(), "No network", Toast.LENGTH_LONG).show();
@@ -57,10 +65,16 @@ public class TransportLine extends AppCompatActivity {
         listViewTransportLine.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                String TempListView = tpList.get(position).getTransportLine();
-                Intent intent = new Intent(TransportLine.this,TransportSchedule.class);
-                intent.putExtra("TransportLine", TempListView);
-                startActivity(intent);
+
+                String uri = tpList.get(position).getTransportSchedule();
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(uri));
+                //find an activity to hand the intent and start that activity.
+                if(intent.resolveActivity(getPackageManager()) != null){
+                    startActivity(intent);
+                }else{
+                    Log.d("ImplicitIntents", "Can't handle this intent!");
+                }
 
             }
         });
@@ -91,8 +105,10 @@ public class TransportLine extends AppCompatActivity {
                             tpList.clear();
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject transportResponse = (JSONObject) response.get(i);
+                                int transportId = Integer.parseInt(transportResponse.getString("TransportID"));
                                 String transportLine = transportResponse.getString("TransportLine");
-                                Transport transport = new Transport(transportLine);
+                                String transportSchedule = transportResponse.getString("TransportSchedule");
+                                Transport transport = new Transport(transportId,transportLine,transportSchedule);
                                 tpList.add(transport);
                             }
                             loadTransport();

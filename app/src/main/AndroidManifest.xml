@@ -70,7 +70,7 @@
                 android:value="my.edu.tarc.testsmartkl.MainActivity" />
         </activity>
         <activity android:name=".ViewResponseRecordActivity" />
-        <activity android:name=".ReplyResponseActivity" />
+        <activity android:name=".ReplyResponseActivity"></activity>
     </application>
 
 </manifest>
