@@ -32,11 +32,11 @@ public class FeedbackAdapter extends ArrayAdapter<Feedback> {
         textViewDesc = rowView.findViewById(R.id.textViewDesc);
         textViewDate = rowView.findViewById(R.id.textViewDate);
 
-        textViewID.setText(String.format("%s : %s", "ID",feedback.getFeedbackID()));
-        textViewType.setText(String.format("%s : %s", "Type",feedback.getFeedbackType()));
-        textViewSubject.setText(String.format("%s : %s", "Subject",feedback.getSubject()));
-        textViewDesc.setText(String.format("%s : %s", "Description",feedback.getDescription()));
-        textViewDate.setText(String.format("%s : %s", "Date",feedback.getDate()));
+        textViewID.setText(String.format("%s", feedback.getFeedbackID()));
+        textViewType.setText(String.format("%s",feedback.getFeedbackType()));
+        textViewSubject.setText(String.format("%s",feedback.getSubject()));
+        textViewDesc.setText(String.format("%s",feedback.getDescription()));
+        textViewDate.setText(String.format("%s",feedback.getDate()));
         return rowView;
     }
 }

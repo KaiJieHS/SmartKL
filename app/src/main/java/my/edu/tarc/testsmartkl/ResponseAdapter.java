@@ -33,7 +33,7 @@ public class ResponseAdapter extends ArrayAdapter<FeedbackResponses> {
         textViewResponseId = rowView.findViewById(R.id.textViewResponseId);
 
         textViewFeedbackId.setText(String.format("%s : %s", "Feedback ID",feedbackres.getFeedbackID()));
-        textViewResponseDesc.setText(String.format("%s : %s", "Replied",feedbackres.getResponseDesc()));
+        textViewResponseDesc.setText(String.format("%s : %s", "Description",feedbackres.getResponseDesc()));
         textViewResponseDate.setText(String.format("%s : %s", "Date/Time",feedbackres.getResponseDate()));
         textViewOfficerId.setText(String.format("%s : %s", "Officer ID",feedbackres.getOfficerID()));
         textViewResponseId.setText(String.format("%s : %s", "Response ID",feedbackres.getResponseID()));

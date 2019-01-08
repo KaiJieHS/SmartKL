@@ -1,13 +1,46 @@
 package my.edu.tarc.testsmartkl;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ListView;
+import android.widget.SearchView;
 import android.widget.Toast;
+
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.android.volley.RequestQueue;
+
+import java.util.List;
 
 
 /**
@@ -23,6 +56,14 @@ public class FeedbackFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    public static final String TAG = "my.edu.tarc.testsmartkl";
+    ListView listViewFeedback;
+    List<Feedback> fbList;
+    private ProgressDialog pDialog;
+
+    //TODO: Please update the URL to point to your own server
+    private static String SEARCH_URL = "https://circumgyratory-gove.000webhostapp.com/search_feedback.php";
+    RequestQueue queue;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -59,12 +100,16 @@ public class FeedbackFragment extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        int id = Integer.parseInt(getArguments().getString("CurrentCitizenID"));
+
+
         return inflater.inflate(R.layout.fragment_feedback, container, false);
     }
 
