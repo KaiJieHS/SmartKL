@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(intent);
                     return true;
                 case R.id.navigation_me:
-                    Intent intent1 = new Intent(MainActivity.this,FeedbackActivity.class);
+                    Intent intent1 = new Intent(MainActivity.this,CitizenRegisterActivity.class);
                     //intent.putExtra("CurrentCitizenID", "1");
                     startActivity(intent1);
                     return true;

@@ -49,15 +49,9 @@
     <string name="phone">Phone</string>
     <string name="email">Email</string>
     <string name="button_register">Register</string>
+    <string name="confirmPassword">Confirm Password</string>
     <string name="reply">Reply</string>
-    <string name="action_sign_in_short">Sign in</string>
-    <string name="error_invalid_email">This email address is invalid</string>
-    <string name="error_invalid_password">This password is too short</string>
-    <string name="error_incorrect_password">This password is incorrect</string>
-    <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+
     <string name="transportLine" />
     <string name="title_activity_transport_line">TransportLineActivity</string>
     <string name="hcBranchName">No record</string>
