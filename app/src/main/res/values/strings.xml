@@ -36,11 +36,7 @@
     <string name="time">Time</string>
     <string name="norecord">No record</string>
     <string name="title_activity_citizen_login">Sign in</string>
-    <!-- Strings related to login -->
-    <string name="prompt_username">UserName</string>
-    <string name="prompt_password">Password</string>
-    <string name="action_sign_in">Sign In</string>
-    <string name="register_forget_password">Register | Forget Password</string>
+
     <string name="already_register">Already Register? Click here to Login</string>
 
     <string name="username">Username</string>
@@ -51,7 +47,7 @@
     <string name="button_register">Register</string>
     <string name="confirmPassword">Confirm Password</string>
     <string name="reply">Reply</string>
-
+    <string name="button_login">Login</string>
     <string name="transportLine" />
     <string name="title_activity_transport_line">TransportLineActivity</string>
     <string name="hcBranchName">No record</string>

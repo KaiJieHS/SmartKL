@@ -3,7 +3,7 @@
     package="my.edu.tarc.testsmartkl">
 
     <!-- To auto-complete the email text field in the login form with the user's emails -->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
@@ -39,9 +39,6 @@
             android:name=".AddFeedbackActivity"
             android:parentActivityName=".FeedbackActivity" />
         <activity
-            android:name=".CitizenLoginActivity"
-            android:label="@string/title_activity_citizen_login" />
-        <activity
             android:name=".TransportActivity"
             android:label="@string/title_activity_transport"
             android:parentActivityName=".MainActivity"
@@ -72,7 +69,10 @@
         <activity android:name=".ViewResponseRecordActivity" />
         <activity android:name=".ReplyResponseActivity" />
         <activity android:name=".AddHealthCareActivity" />
-        <activity android:name=".AddTransportLineActivity"></activity>
+        <activity android:name=".AddTransportLineActivity" />
+        <activity android:name=".CitizenRegisterActivity" />
+        <activity android:name=".CitizenLoginActivity" />
+        <activity android:name=".ProfileActivity"></activity>
     </application>
 
 </manifest>

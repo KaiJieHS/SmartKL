@@ -1,11 +1,19 @@
 package my.edu.tarc.testsmartkl;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.TextPaint;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -18,6 +26,7 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -27,12 +36,17 @@ public class CitizenRegisterActivity extends AppCompatActivity implements View.O
     private EditText editTextUsername, editTextPassword , editTextConfirmPassword, editTextName,editTextPhoneNo,editTextEmail;
     private Button buttonRegister;
     private ProgressDialog progressDialog;
-
+    private TextView textViewLogin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_citizen_register);
 
+        if(SharedPrefManager.getInstance(this).isLoggedIn()){
+            finish();;
+            startActivity(new Intent(this,ProfileActivity.class));
+            return;
+        }
         editTextUsername = (EditText)findViewById(R.id.editTextUserName);
         editTextPassword = (EditText)findViewById(R.id.editTextPassword);
         editTextConfirmPassword = (EditText)findViewById(R.id.editTextConfirmPassword);
@@ -40,16 +54,45 @@ public class CitizenRegisterActivity extends AppCompatActivity implements View.O
         editTextPhoneNo = (EditText)findViewById(R.id.editTextPhoneNo);
         editTextEmail = (EditText)findViewById(R.id.editTextEmail);
 
+        textViewLogin = (TextView)findViewById(R.id.textViewLogin);
         buttonRegister = (Button)findViewById(R.id.btnRegister);
 
         progressDialog = new ProgressDialog(this);
 
         buttonRegister.setOnClickListener(this);
+        textViewLogin.setOnClickListener(this);
+        String text = "Already Register? Click here to Login";
+        SpannableString ss = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(View widget) {
+                Intent intent = new Intent(CitizenRegisterActivity.this,CitizenLoginActivity.class);
+                startActivity(intent);
+            }
+
+            @Override
+            public void updateDrawState(TextPaint ds) {
+                super.updateDrawState(ds);
+                ds.setColor(Color.BLUE );
+                ds.setUnderlineText(false);
+            }
+        };
+
+        ss.setSpan(clickableSpan,32,37,Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        textViewLogin.setText(ss);
+        textViewLogin.setMovementMethod(LinkMovementMethod.getInstance());
     }
 
     public void onClick(View view){
         if(view == buttonRegister) {
-            registerCitizen();
+            if(editTextPassword.getText().toString().equals(editTextConfirmPassword.getText().toString())) {
+                registerCitizen();
+            }else{
+                Toast.makeText(getApplicationContext(),"Sorry 2 password must be same",Toast.LENGTH_LONG).show();
+                editTextPassword.setText("");
+                editTextConfirmPassword.setText("");
+            }
         }
     }
 
@@ -91,7 +134,6 @@ public class CitizenRegisterActivity extends AppCompatActivity implements View.O
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
+        RequestHandler.getInstance(this).addToRequestQueue(stringRequest);
     }
 }
